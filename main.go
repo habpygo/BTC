@@ -41,6 +41,10 @@ func main() {
 		Hand = Game[k-5 : k] // 0 - 5; 10 - 15; 20 - 25 etc
 		Deck = Game[k : k+5] // 5 - 10; 15 - 25; 25 - 35 etc
 
+		fmt.Println("\nGame no: ========== ", counter, "============")
+		fmt.Println("Hand: ", Hand)
+		fmt.Println("Deck: ", Deck)
+		counter++
 		// we look for highest rank straight-flush and flush first
 		flushPotence1, numberfP1, flushPotence2, numberfP2 := searcher.LookForSuits(Hand)
 		fmt.Println("flushPotence1 is: ", flushPotence1, "and number of the same Suit are: ", numberfP1)
@@ -58,29 +62,5 @@ func main() {
 			fmt.Println("just flush")
 			ResultArray = append(ResultArray, ResultString)
 		}
-
-		fmt.Println("\nGame no: ========== ", counter, "============")
-		fmt.Println("Hand: ", Hand)
-		fmt.Println("Deck: ", Deck)
-		counter++
 	}
-
-	// // we look for highest rank straight-flush and flush first
-	// flushPotence1, numberfP1, flushPotence2, numberfP2 := searcher.LookForSuits(Hand)
-	// fmt.Println("flushPotence1 is: ", flushPotence1, "and number of the same Suit are: ", numberfP1)
-	// fmt.Println("flushPotence1 is: ", flushPotence2, "and number of the same Suit are: ", numberfP2)
-
-	// FlushOutcome := searcher.LookForFlushLib(flushPotence1, numberfP1, Deck)
-	// if FlushOutcome == 0 {
-	// 	ResultString = "straight-flush"
-	// 	//GameArray = append(GameArray, ResultString)
-	// 	fmt.Println("YEAH ... straight-flush")
-	// 	//utils.FormatSolution(FlushOutcome)
-
-	// } else {
-	// 	ResultString = "flush"
-	// 	fmt.Println("just flush")
-	// 	ResultArray = append(ResultArray, ResultString)
-	// }
-	//Game = Game[:0] // Game over
 }

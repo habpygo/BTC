@@ -144,25 +144,28 @@ func LookForFlushLib(suit string, counter int, deck []cards.Card) int {
 
 		if suit == "S" {
 			Straight := StraightFlushOrFlush(SpadesArray)
+			fmt.Println("Array voor Suit S ziet er zo uit: ", SpadesArray)
 			if Straight {
 				return 0
 			}
 		}
 		if suit == "H" {
 			Straight := StraightFlushOrFlush(HeartsArray)
-			fmt.Println("Array ziet er zo uit: ", HeartsArray)
+			fmt.Println("Array voor Suit H ziet er zo uit: ", HeartsArray)
 			if Straight {
 				return 0
 			}
 		}
 		if suit == "D" {
 			Straight := StraightFlushOrFlush(DiamondsArray)
+			fmt.Println("Array voor Suit D ziet er zo uit: ", DiamondsArray)
 			if Straight {
 				return 0
 			}
 		}
 		if suit == "C" {
 			Straight := StraightFlushOrFlush(ClubsArray)
+			fmt.Println("Array voor Suit C ziet er zo uit: ", ClubsArray)
 			if Straight {
 				return 0
 			}
