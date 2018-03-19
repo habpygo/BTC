@@ -56,11 +56,23 @@ func main() {
 			//GameArray = append(GameArray, ResultString)
 			fmt.Println("YEAH ... straight-flush")
 			//utils.FormatSolution(FlushOutcome)
+			ResultArray = append(ResultArray, ResultString)
 
 		} else {
+			// four-of-a-kind search here
+			// full-house search here
+
+			// then add flush to Result stack
 			ResultString = "flush"
-			fmt.Println("just flush potential")
+			fmt.Println("just flush potential, but we have to look for four-of-a-kind and or full-house first")
 			ResultArray = append(ResultArray, ResultString)
 		}
+
+		// straight search here
+		// three-of-kind search here
+		// two-pairs search here
+		// one-pair search here
+		// highest-card search here
+
 	}
 }
