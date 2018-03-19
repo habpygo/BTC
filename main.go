@@ -59,7 +59,7 @@ func main() {
 
 		} else {
 			ResultString = "flush"
-			fmt.Println("just flush")
+			fmt.Println("just flush potential")
 			ResultArray = append(ResultArray, ResultString)
 		}
 	}

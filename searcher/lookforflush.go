@@ -140,7 +140,7 @@ func LookForFlushLib(suit string, counter int, deck []cards.Card) int {
 		counter += Clubs
 	}
 	if counter == 5 {
-		fmt.Println("We have a flush; start looking for straigh or ordinary")
+		fmt.Println("We have a flush; start looking for straight-flush")
 
 		if suit == "S" {
 			Straight := StraightFlushOrFlush(SpadesArray)
@@ -171,6 +171,11 @@ func LookForFlushLib(suit string, counter int, deck []cards.Card) int {
 			}
 		}
 	}
+	// clean out Suit arrays for next game
+	SpadesArray = SpadesArray[:0]
+	HeartsArray = HeartsArray[:0]
+	DiamondsArray = DiamondsArray[:0]
+	ClubsArray = ClubsArray[:0]
 
 	return -1
 }
