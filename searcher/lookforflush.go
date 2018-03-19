@@ -91,7 +91,7 @@ func LookForSuits(hand []cards.Card) (string, int, string, int) {
 	return H, LH, A, LA
 }
 
-func LookForFlush(suit string, counter int, deck []cards.Card) int {
+func LookForFlushLib(suit string, counter int, deck []cards.Card) int {
 	// index is both a counter and an index
 	index := counter
 	Spades := 0

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"BTC/psychic/cards"
 	"BTC/psychic/searcher"
 	"BTC/psychic/utils"
 	"fmt"
@@ -8,37 +9,78 @@ import (
 
 func main() {
 
-	GameArray, noOfLinesInFile, err := utils.ReadFile("sampleinput")
+	//GameArray, noOfLinesInFile, err := utils.ReadFile("sampleinput")
+	// file contains game in memory
+	card := cards.Card{}
+	Game := []cards.Card{}
+	var Hand = Game[:]
+	var Deck = Game[:]
+	var ResultArray []string
+	var ResultString string
+
+	file, noOfLinesInFile, err := utils.ReadLine("sampleinput")
+	if err != nil {
+		fmt.Println("couldn't read file")
+	}
+	fmt.Println("noOfLines is: ", noOfLinesInFile)
+
 	for i := 0; i < noOfLinesInFile; i++ {
-		var ResultString string
 
-		if err != nil {
-			fmt.Println("error in reading file")
+		for j := 0; j < len(file[i]); j = j + 3 {
+			if j < len(file[i])-1 {
+				card.Rank = string(file[i][j])
+				card.Suit = string(file[i][j+1])
+				Game = append(Game, card)
+			}
 		}
-		fmt.Println("length of GameArray is: ", len(GameArray))
-		// prepare Hand and Deck for each game i
+	}
 
-		//fmt.Println(lineInput)
-		Hand, Deck := utils.ReadHandAndDeck(GameArray, noOfLinesInFile)
-		fmt.Println("GameArray is: ", GameArray)
+	// play the game
+	counter := 1
+	for k := 5; k+10 < 96; k = k + 10 {
+		Hand = Game[k-5 : k] // 0 - 5; 10 - 15; 20 - 25 etc
+		Deck = Game[k : k+5] // 5 - 10; 15 - 25; 25 - 35 etc
 
-		fmt.Printf("GAME no %x\n =================================\n", i)
-		fmt.Println("Hand is: ", Hand)
-		fmt.Println("Deck is: ", Deck)
 		// we look for highest rank straight-flush and flush first
 		flushPotence1, numberfP1, flushPotence2, numberfP2 := searcher.LookForSuits(Hand)
 		fmt.Println("flushPotence1 is: ", flushPotence1, "and number of the same Suit are: ", numberfP1)
 		fmt.Println("flushPotence1 is: ", flushPotence2, "and number of the same Suit are: ", numberfP2)
 
-		flushOutcome := searcher.LookForFlush(flushPotence1, numberfP1, Deck)
-		if flushOutcome == 0 {
+		FlushOutcome := searcher.LookForFlushLib(flushPotence1, numberfP1, Deck)
+		if FlushOutcome == 0 {
 			ResultString = "straight-flush"
-			GameArray = append(GameArray, ResultString)
+			//GameArray = append(GameArray, ResultString)
 			fmt.Println("YEAH ... straight-flush")
+			//utils.FormatSolution(FlushOutcome)
+
 		} else {
 			ResultString = "flush"
 			fmt.Println("just flush")
-			GameArray = append(GameArray, ResultString)
+			ResultArray = append(ResultArray, ResultString)
 		}
+
+		fmt.Println("\nGame no: ========== ", counter, "============")
+		fmt.Println("Hand: ", Hand)
+		fmt.Println("Deck: ", Deck)
+		counter++
 	}
+
+	// // we look for highest rank straight-flush and flush first
+	// flushPotence1, numberfP1, flushPotence2, numberfP2 := searcher.LookForSuits(Hand)
+	// fmt.Println("flushPotence1 is: ", flushPotence1, "and number of the same Suit are: ", numberfP1)
+	// fmt.Println("flushPotence1 is: ", flushPotence2, "and number of the same Suit are: ", numberfP2)
+
+	// FlushOutcome := searcher.LookForFlushLib(flushPotence1, numberfP1, Deck)
+	// if FlushOutcome == 0 {
+	// 	ResultString = "straight-flush"
+	// 	//GameArray = append(GameArray, ResultString)
+	// 	fmt.Println("YEAH ... straight-flush")
+	// 	//utils.FormatSolution(FlushOutcome)
+
+	// } else {
+	// 	ResultString = "flush"
+	// 	fmt.Println("just flush")
+	// 	ResultArray = append(ResultArray, ResultString)
+	// }
+	//Game = Game[:0] // Game over
 }

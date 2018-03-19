@@ -8,7 +8,7 @@ import (
 
 var PokerArray []string
 
-func ReadFile(file string) ([]string, int, error) {
+func ReadLine(file string) ([]string, int, error) {
 
 	count := 0
 	infile, err := os.Open(file)
