@@ -5,6 +5,7 @@ import (
 	"fmt"
 )
 
+// LookForFour analyses the give rank (A...2)
 func LookForFour(rank string, noOfRanks int, deck []cards.Card) (bool, bool, bool) {
 
 	// look also for three of a kind or one pair

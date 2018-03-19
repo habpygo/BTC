@@ -18,25 +18,27 @@ func main() {
 	var ResultArray []string
 	var ResultString string
 
+	//
 	file, noOfLinesInFile, err := utils.ReadLine("sampleinput")
 	if err != nil {
 		fmt.Println("couldn't read file")
 	}
-	fmt.Println("noOfLines is: ", noOfLinesInFile)
+	fmt.Println("noOfLinesFile is: ", noOfLinesInFile)
 
+	// noOfLinesFile == 9
+	// len(file[i]) == 29
 	for i := 0; i < noOfLinesInFile; i++ {
-
-		for j := 0; j < len(file[i]); j = j + 3 {
+		for j := 0; j < len(file[i]); j = j + 3 { // iterate +3 elements further
 			if j < len(file[i])-1 {
 				card.Rank = string(file[i][j])
 				card.Suit = string(file[i][j+1])
-				Game = append(Game, card)
+				Game = append(Game, card) // perhaps we could build an interface around this
 			}
 		}
 	}
 
 	// play the game
-	counter := 1
+	counter := 0
 	for k := 5; k+10 < 96; k = k + 10 {
 		Hand = Game[k-5 : k] // 0 - 5; 10 - 15; 20 - 25 etc
 		Deck = Game[k : k+5] // 5 - 10; 15 - 25; 25 - 35 etc
@@ -50,15 +52,15 @@ func main() {
 		fmt.Println("flushPotence1 is: ", flushPotence1, "and number of the same Suit are: ", numberfP1)
 		fmt.Println("flushPotence1 is: ", flushPotence2, "and number of the same Suit are: ", numberfP2)
 
-		FlushOutcome := searcher.LookForFlushLib(flushPotence1, numberfP1, Deck)
-		if FlushOutcome == 0 {
+		FlushOutcome := searcher.LookForFlushInDeck(flushPotence1, numberfP1, Deck)
+		if FlushOutcome {
 			ResultString = "straight-flush"
-			//GameArray = append(GameArray, ResultString)
-			fmt.Println("YEAH ... straight-flush")
-			//utils.FormatSolution(FlushOutcome)
-			ResultArray = append(ResultArray, ResultString)
+			fmt.Println("After analyzing we say: YEAH ... straight-flush. This is the highest we can get, so no further analysis warrented")
+			ResultArray = append(ResultArray, ResultString) // TODO: make suitable array anc concatenate strings
 
 		} else {
+			firstRank, fRCount, secondRank, sRCount := searcher.FindRanks(Hand)
+			fmt.Println("firstRank is :", firstRank, fRCount, "and secondRank is: ", sRCount, secondRank)
 			// four-of-a-kind search here
 			// full-house search here
 
@@ -71,7 +73,7 @@ func main() {
 		// straight search here
 		// three-of-kind search here
 		// two-pairs search here
-		// one-pair search here
+		// one-pair search here -- compare Hand with Deck with strings.Contains("deck[i].Rank, __the found in hand__ ")
 		// highest-card search here
 
 	}

@@ -53,6 +53,7 @@ func LookForSuits(hand []cards.Card) (string, int, string, int) {
 
 	m := map[string]int{"S": Spades, "H": Hearts, "D": Diamonds, "C": Clubs}
 
+	// sort the map
 	type kv struct {
 		Key   string
 		Value int
@@ -91,7 +92,7 @@ func LookForSuits(hand []cards.Card) (string, int, string, int) {
 	return H, LH, A, LA
 }
 
-func LookForFlushLib(suit string, counter int, deck []cards.Card) int {
+func LookForFlushInDeck(suit string, counter int, deck []cards.Card) bool {
 	// index is both a counter and an index
 	index := counter
 	Spades := 0
@@ -146,28 +147,28 @@ func LookForFlushLib(suit string, counter int, deck []cards.Card) int {
 			Straight := StraightFlushOrFlush(SpadesArray)
 			fmt.Println("Array voor Suit S ziet er zo uit: ", SpadesArray)
 			if Straight {
-				return 0
+				return true
 			}
 		}
 		if suit == "H" {
 			Straight := StraightFlushOrFlush(HeartsArray)
 			fmt.Println("Array voor Suit H ziet er zo uit: ", HeartsArray)
 			if Straight {
-				return 0
+				return true
 			}
 		}
 		if suit == "D" {
 			Straight := StraightFlushOrFlush(DiamondsArray)
 			fmt.Println("Array voor Suit D ziet er zo uit: ", DiamondsArray)
 			if Straight {
-				return 0
+				return true
 			}
 		}
 		if suit == "C" {
 			Straight := StraightFlushOrFlush(ClubsArray)
 			fmt.Println("Array voor Suit C ziet er zo uit: ", ClubsArray)
 			if Straight {
-				return 0
+				return true
 			}
 		}
 	}
@@ -177,7 +178,7 @@ func LookForFlushLib(suit string, counter int, deck []cards.Card) int {
 	DiamondsArray = DiamondsArray[:0]
 	ClubsArray = ClubsArray[:0]
 
-	return -1
+	return false
 }
 
 func StraightFlushOrFlush(rankarray []string) bool {
