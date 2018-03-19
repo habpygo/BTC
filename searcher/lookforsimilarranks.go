@@ -21,6 +21,7 @@ func LookForFullHouse(rank1 string, rank2 string, nor1 int, nor2 int, deck []car
 
 func LookForStraight(rank string) bool {
 
+	// look also for highest card
 	fmt.Println("")
 	return false
 }
