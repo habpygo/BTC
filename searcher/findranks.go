@@ -2,6 +2,7 @@ package searcher
 
 import (
 	"BTC/psychic/cards"
+	"fmt"
 	"sort"
 	"strings"
 )
@@ -26,7 +27,7 @@ func FindRanks(hand, deck []cards.Card) int {
 
 	// iterate over the hand and identify the ranks and their quantity
 	for i := 0; i < len(hand); i++ {
-		//fmt.Println("hand[i].Rank for this round is: ", hand[i].Rank)
+		fmt.Println("hand[i].Rank for this round is: ", hand[i].Rank, "suit is: ", hand[i].Suit)
 		HandAce += strings.Count(hand[i].Rank, "A")
 		HandKing += strings.Count(hand[i].Rank, "K")
 		HandQueen += strings.Count(hand[i].Rank, "Q")
@@ -42,7 +43,6 @@ func FindRanks(hand, deck []cards.Card) int {
 		HandTwo += strings.Count(hand[i].Rank, "2")
 	}
 
-	// iterate over the Deck depending on the number of Ranks found in Hand
 	DeckAce := FindTotalDeckRanks("A", HandAce, deck)
 	DeckKing := FindTotalDeckRanks("K", HandKing, deck)
 	DeckQueen := FindTotalDeckRanks("Q", HandQueen, deck)
@@ -77,6 +77,13 @@ func FindRanks(hand, deck []cards.Card) int {
 	sort.Sort(sort.Reverse(sort.IntSlice(rankTotal)))
 	firstOutcome := rankTotal[0]
 	secondOutome := rankTotal[1]
+	//thirdOutome := rankTotal[2]
+	// fourthOutome := rankTotal[3]
+	// fifthOutome := rankTotal[4]
+
+	fmt.Println("The whole []int rankTotal is: ", rankTotal)
+	fmt.Println("\nfirstOutcome is: ", firstOutcome)
+	fmt.Println("secondOutcome is: ", secondOutome)
 
 	// four-of-a-kind
 	if firstOutcome == 4 {
@@ -99,11 +106,11 @@ func FindRanks(hand, deck []cards.Card) int {
 	}
 
 	// one-pair
-	if firstOutcome == 1 && secondOutome == 1 {
+	if firstOutcome == 2 && secondOutome == 0 || firstOutcome == 0 && secondOutome == 1 {
 		return 7
 	}
-
-	// 0 was straight-flush
-	// 1 is four-of-a-kind, 2 is fullhouse, 3 is flush, 4 is straight, 5 is three-of-a-kind, 6 is two-pair, 7 is one-pair, 8 is highest-card
+	if firstOutcome == 1 && secondOutome == 1 {
+		return 8
+	}
 	return 8
 }

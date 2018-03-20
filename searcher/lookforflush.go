@@ -93,7 +93,7 @@ func LookForSuits(hand []cards.Card) (string, int, string, int) {
 	return H, LH, A, LA
 }
 
-func LookForFlushInDeck(suit string, counter int, deck []cards.Card) (bool, bool) {
+func LookForFlushInDeck(suit string, counter int, deck []cards.Card) bool {
 	// index is both a counter and an index
 	index := counter
 	Spades := 0
@@ -144,28 +144,28 @@ func LookForFlushInDeck(suit string, counter int, deck []cards.Card) (bool, bool
 		if suit == "S" {
 			StraightFlush := StraightFlushOrFlush(SpadesArray)
 			if StraightFlush {
-				return true, false
+				return true
 			}
 		}
 		if suit == "H" {
 			StraightFlush := StraightFlushOrFlush(HeartsArray)
 			if StraightFlush {
-				return true, false
+				return true
 			}
 		}
 		if suit == "D" {
 			StraightFlush := StraightFlushOrFlush(DiamondsArray)
 			if StraightFlush {
-				return true, false
+				return true
 			}
 		}
 		if suit == "C" {
 			StraightFlush := StraightFlushOrFlush(ClubsArray)
 			if StraightFlush {
-				return true, false
+				return true
 			}
 		}
-		return false, true
+		return false
 	}
 	// clean out Suit arrays for next game
 	SpadesArray = SpadesArray[:0]
@@ -173,9 +173,10 @@ func LookForFlushInDeck(suit string, counter int, deck []cards.Card) (bool, bool
 	DiamondsArray = DiamondsArray[:0]
 	ClubsArray = ClubsArray[:0]
 
-	return false, false
+	return false
 }
 
+// StraightFlushOrFlush looks if we are dealing with a straight-flush or normal flush
 func StraightFlushOrFlush(rankarray []string) bool {
 	// compare rankarray with cards
 	RankedMap := make(map[string]int)
