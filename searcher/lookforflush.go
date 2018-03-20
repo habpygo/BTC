@@ -2,10 +2,11 @@ package searcher
 
 import (
 	"BTC/psychic/cards"
-	"fmt"
 	"sort"
 	"strings"
 )
+
+const NumbeOfCards = 5
 
 var SpadesArray []string
 var HeartsArray []string
@@ -28,7 +29,7 @@ func LookForSuits(hand []cards.Card) (string, int, string, int) {
 	var LH int
 	var LA int
 
-	for i := 0; i < 5; i++ { // hard coded; more than 5 and you cheat
+	for i := 0; i < NumbeOfCards; i++ { // hard coded; more than 5 and you cheat :-)
 		if strings.Contains(hand[i].Suit, "S") {
 			Spades++
 			SpadesArray = append(SpadesArray, hand[i].Rank)
@@ -69,7 +70,7 @@ func LookForSuits(hand []cards.Card) (string, int, string, int) {
 	})
 
 	for index, kv := range ss {
-		fmt.Printf("%s, %d\n", kv.Key, kv.Value)
+		//fmt.Printf("%s, %d\n", kv.Key, kv.Value)
 		if index == 0 {
 			Highest = kv.Key
 			Number = kv.Value
@@ -92,7 +93,7 @@ func LookForSuits(hand []cards.Card) (string, int, string, int) {
 	return H, LH, A, LA
 }
 
-func LookForFlushInDeck(suit string, counter int, deck []cards.Card) bool {
+func LookForFlushInDeck(suit string, counter int, deck []cards.Card) (bool, bool) {
 	// index is both a counter and an index
 	index := counter
 	Spades := 0
@@ -101,7 +102,7 @@ func LookForFlushInDeck(suit string, counter int, deck []cards.Card) bool {
 	Clubs := 0
 
 	// check for Suit in deck
-	for i := 0; i < 5-index; i++ {
+	for i := 0; i < NumbeOfCards-index; i++ {
 		if strings.Contains(deck[i].Suit, "S") {
 			Spades++
 		}
@@ -118,15 +119,12 @@ func LookForFlushInDeck(suit string, counter int, deck []cards.Card) bool {
 		switch suit {
 		case "S":
 			SpadesArray = append(SpadesArray, deck[i].Rank)
-		//	fmt.Println("counter S is: ", counter)
 		case "H":
 			HeartsArray = append(HeartsArray, deck[i].Rank)
 		case "D":
 			DiamondsArray = append(DiamondsArray, deck[i].Rank)
-		//	fmt.Println("counter D is: ", counter)
 		case "C":
 			ClubsArray = append(ClubsArray, deck[i].Rank)
-		//	fmt.Println("counter C is: ", counter)
 		default:
 		}
 	}
@@ -141,36 +139,33 @@ func LookForFlushInDeck(suit string, counter int, deck []cards.Card) bool {
 		counter += Clubs
 	}
 	if counter == 5 {
-		fmt.Println("We have a flush; start looking for straight-flush")
+		//fmt.Println("We have a flush; start looking for straight-flush")
 
 		if suit == "S" {
-			Straight := StraightFlushOrFlush(SpadesArray)
-			//		fmt.Println("Array voor Suit S ziet er zo uit: ", SpadesArray)
-			if Straight {
-				return true
+			StraightFlush := StraightFlushOrFlush(SpadesArray)
+			if StraightFlush {
+				return true, false
 			}
 		}
 		if suit == "H" {
-			Straight := StraightFlushOrFlush(HeartsArray)
-			//		fmt.Println("Array voor Suit H ziet er zo uit: ", HeartsArray)
-			if Straight {
-				return true
+			StraightFlush := StraightFlushOrFlush(HeartsArray)
+			if StraightFlush {
+				return true, false
 			}
 		}
 		if suit == "D" {
-			Straight := StraightFlushOrFlush(DiamondsArray)
-			//		fmt.Println("Array voor Suit D ziet er zo uit: ", DiamondsArray)
-			if Straight {
-				return true
+			StraightFlush := StraightFlushOrFlush(DiamondsArray)
+			if StraightFlush {
+				return true, false
 			}
 		}
 		if suit == "C" {
-			Straight := StraightFlushOrFlush(ClubsArray)
-			//		fmt.Println("Array voor Suit C ziet er zo uit: ", ClubsArray)
-			if Straight {
-				return true
+			StraightFlush := StraightFlushOrFlush(ClubsArray)
+			if StraightFlush {
+				return true, false
 			}
 		}
+		return false, true
 	}
 	// clean out Suit arrays for next game
 	SpadesArray = SpadesArray[:0]
@@ -178,7 +173,7 @@ func LookForFlushInDeck(suit string, counter int, deck []cards.Card) bool {
 	DiamondsArray = DiamondsArray[:0]
 	ClubsArray = ClubsArray[:0]
 
-	return false
+	return false, false
 }
 
 func StraightFlushOrFlush(rankarray []string) bool {
@@ -206,7 +201,6 @@ func StraightFlushOrFlush(rankarray []string) bool {
 
 	var stringSlice []string
 	for _, kv := range ss {
-		fmt.Printf("%s, %d\n", kv.Key, kv.Value)
 		stringSlice = append(stringSlice, kv.Key)
 	}
 	stringSet := strings.Join(stringSlice, "")

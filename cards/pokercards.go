@@ -5,6 +5,7 @@ type Card struct {
 	Suit string
 }
 
+// to compare slices and subslices
 var StringSet = "AKQJT98765432"
 
 func SetRank(rank string) int {

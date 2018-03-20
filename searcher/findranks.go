@@ -2,7 +2,7 @@ package searcher
 
 import (
 	"BTC/psychic/cards"
-	"fmt"
+	"sort"
 	"strings"
 )
 
@@ -57,24 +57,7 @@ func FindRanks(hand, deck []cards.Card) int {
 	DeckThree := FindTotalDeckRanks("3", HandThree, deck)
 	DeckTwo := FindTotalDeckRanks("2", HandTwo, deck)
 
-	// map it to the counted value to sort on importance in the hand
-	//handMap := map[string]int{"A": HandAce, "K": HandKing, "Q": HandQueen, "J": HandJack, "T": HandT, "9": HandNine, "8": HandEight, "7": HandSeven, "6": HandSix, "5": HandFive, "4": HandFour, "3": HandThree, "2": HandTwo}
-	//deckMap := map[string]int{"A": DeckAce, "K": DeckKing, "Q": DeckQueen, "J": DeckJack, "T": DeckT, "9": DeckNine, "8": DeckEight, "7": DeckSeven, "6": DeckSix, "5": DeckFive, "4": DeckFour, "3": DeckThree, "2": DeckTwo}
-
-	// totA := handMap["A"] + deckMap["A"]
-	// totK := handMap["K"] + deckMap["K"]
-	// totQ := handMap["Q"] + deckMap["Q"]
-	// totJ := handMap["J"] + deckMap["J"]
-	// totT := handMap["T"] + deckMap["T"]
-	// totNine := handMap["9"] + deckMap["9"]
-	// totEight := handMap["8"] + deckMap["8"]
-	// totSeven := handMap["7"] + deckMap["7"]
-	// totSix := handMap["6"] + deckMap["6"]
-	// totFive := handMap["5"] + deckMap["5"]
-	// totFour := handMap["4"] + deckMap["4"]
-	// totThree := handMap["3"] + deckMap["3"]
-	// totTwo := handMap["2"] + deckMap["2"]
-
+	// Total number of a certain Rank
 	totA := HandAce + DeckAce
 	totK := HandKing + DeckKing
 	totQ := HandQueen + DeckQueen
@@ -89,49 +72,38 @@ func FindRanks(hand, deck []cards.Card) int {
 	totThree := HandThree + DeckThree
 	totTwo := HandTwo + DeckTwo
 
-	fmt.Println("HandA is: ", HandAce, "DeckAce is :", DeckAce, "and totA is: ", totA)
-	fmt.Println("HandK is: ", HandKing, "DeckKing is :", DeckKing, "and totK is: ", totK)
-	fmt.Println("HandQ is: ", HandQueen, "DeckQueen is :", DeckQueen, "and totQ is: ", totQ)
-	fmt.Println("HandJ is: ", HandAce, "DeckJack is :", DeckJack, "and totJ is: ", totJ)
-	fmt.Println("HandT is: ", HandT, "DeckT is :", DeckT, "and totT is: ", totT)
-	fmt.Println("HandNine is: ", HandNine, "DeckNine is :", DeckNine, "and totNine is: ", totNine)
-	fmt.Println("HandEight is: ", HandEight, "DeckEight is :", DeckEight, "and totEight is: ", totEight)
-	fmt.Println("HandSeven is: ", HandSeven, "DeckSeven is :", DeckSeven, "and totSeven is: ", totSeven)
-	fmt.Println("HandSix is: ", HandSix, "DeckSix is :", DeckSix, "and totSix is: ", totSix)
-	fmt.Println("HandFive is: ", HandFive, "DeckFive is :", DeckFive, "and totFive is: ", totFive)
-	fmt.Println("HandFour is: ", HandFour, "DeckFour is :", DeckFour, "and totFour is: ", totFour)
-	fmt.Println("HandThree is: ", HandThree, "DeckThree is :", DeckThree, "and totThree is: ", totThree)
-	fmt.Println("HandTwo is: ", HandTwo, "DeckTwo is :", DeckTwo, "and totTwo is: ", totTwo)
+	rankTotal := []int{totA, totK, totQ, totJ, totT, totNine, totEight, totSeven, totSix, totFive, totFour, totThree, totTwo}
 
-	// compare maps
-	result := 0
+	sort.Sort(sort.Reverse(sort.IntSlice(rankTotal)))
+	firstOutcome := rankTotal[0]
+	secondOutome := rankTotal[1]
+
+	// four-of-a-kind
+	if firstOutcome == 4 {
+		return 1
+	}
+
+	// full-house
+	if firstOutcome == 3 && secondOutome >= 2 || firstOutcome >= 2 && secondOutome == 3 {
+		return 2
+	}
+
+	// three-of-a-kind
+	if firstOutcome == 3 {
+		return 5
+	}
+
+	// two-pair
+	if firstOutcome == 2 && secondOutome == 2 {
+		return 6
+	}
+
+	// one-pair
+	if firstOutcome == 1 && secondOutome == 1 {
+		return 7
+	}
 
 	// 0 was straight-flush
 	// 1 is four-of-a-kind, 2 is fullhouse, 3 is flush, 4 is straight, 5 is three-of-a-kind, 6 is two-pair, 7 is one-pair, 8 is highest-card
-	return result
+	return 8
 }
-
-// n := map[int][]string{}
-// 	var a []int
-// 	var Rank []string
-// 	var Freq []int
-// sort the map
-// for k, v := range m {
-// 	n[v] = append(n[v], k)
-// }
-
-// for k := range n {
-// 	a = append(a, k)
-// }
-// // we want the high frequencies on top and we want to pluck the first two
-// // s is the Rank and k is the frequency
-// sort.Sort(sort.Reverse(sort.IntSlice(a)))
-// for _, k := range a {
-// 	for _, s := range n[k] {
-// 		fmt.Println("s is: ", s, "k is: ", k)
-
-// 		//fmt.Printf("The outcome for Rank counting s is: %s, and k is %d\n", s, k)
-// 	}
-// }
-
-// // return first highest ranks with their frequencies

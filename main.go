@@ -15,15 +15,13 @@ func main() {
 	Game := []cards.Card{}
 	var Hand = Game[:]
 	var Deck = Game[:]
-	var ResultArray []string
-	var ResultString string
 
 	//
 	file, noOfLinesInFile, err := utils.ReadLine("sampleinput")
 	if err != nil {
 		fmt.Println("couldn't read file")
 	}
-	fmt.Println("noOfLinesFile is: ", noOfLinesInFile)
+	//fmt.Println("noOfLinesFile is: ", noOfLinesInFile)
 
 	// noOfLinesFile == 9
 	// len(file[i]) == 29
@@ -43,38 +41,58 @@ func main() {
 		Hand = Game[k-5 : k] // 0 - 5; 10 - 15; 20 - 25 etc
 		Deck = Game[k : k+5] // 5 - 10; 15 - 25; 25 - 35 etc
 
-		fmt.Println("\nGame no: ========== ", counter, "============")
-		fmt.Println("Hand: ", Hand)
-		fmt.Println("Deck: ", Deck)
+		//fmt.Println("\n=========== Game no: ", counter, "============")
+		//fmt.Println("Hand: ", Hand)
+		//fmt.Println("Deck: ", Deck)
 		counter++
-		// we look for highest rank straight-flush and flush first
+
+		// start analysis
+
+		// we look for highest possible rank, i.e. straight-flush and flush first
 		flushPotence1, numberfP1, flushPotence2, numberfP2 := searcher.LookForSuits(Hand)
-		fmt.Println("flushPotence1 is: ", flushPotence1, "and number of the same Suit are: ", numberfP1)
-		fmt.Println("flushPotence1 is: ", flushPotence2, "and number of the same Suit are: ", numberfP2)
+		//fmt.Println("flushPotence1 is: ", flushPotence1, "and number of the same Suit are: ", numberfP1)
+		//fmt.Println("flushPotence2 is: ", flushPotence2, "and number of the same Suit are: ", numberfP2)
 
-		FlushOutcome := searcher.LookForFlushInDeck(flushPotence1, numberfP1, Deck)
-		if FlushOutcome {
-			ResultString = "straight-flush"
-			//	fmt.Println("After analyzing we say: YEAH ... straight-flush. This is the highest we can get, so no further analysis warrented")
-			ResultArray = append(ResultArray, ResultString) // TODO: make suitable array anc concatenate strings
+		var StraightFlushOutcome bool
+		var FlushOutcome bool
+		var StraightOutcome bool
+		resultNumber := -1
 
-		} else {
-			// four-of-a-kind search here
-			resultNumber := searcher.FindRanks(Hand, Deck)
-			fmt.Println("resultNumber is: ", resultNumber)
-			// full-house search here
+		StraightFlushOutcome, FlushOutcome = searcher.LookForFlushInDeck(flushPotence1, numberfP1, Deck)
+		//fmt.Println("FlushOutcome is: ", StraightFlushOutcome, "so we have a straight-flush")
 
-			// then add flush to Result stack
-			ResultString = "flush"
-			//	fmt.Println("just flush potential, but we have to look for four-of-a-kind and or full-house first")
-			ResultArray = append(ResultArray, ResultString)
+		StraightOutcome = searcher.LookForStraight(Hand, Deck)
+
+		// loop over possibilities
+		for resultNumber == -1 {
+
+			if StraightFlushOutcome {
+				resultNumber = 0
+				fmt.Printf("\nHand: %v Deck: %v Best Hand: %v", Hand, Deck, cards.EvaluateResults(resultNumber))
+				break // Done!
+			}
+
+			// return an int that depends on outcome
+			resultNumber = searcher.FindRanks(Hand, Deck)
+
+			value := resultNumber // fix the result outcome to avoid re-calculation
+			//fmt.Println("From resultNumber in loop, value is: ", resultNumber)
+
+			if resultNumber > 2 {
+				_, FlushOutcome = searcher.LookForFlushInDeck(flushPotence2, numberfP2, Deck)
+				if FlushOutcome {
+					resultNumber = 3
+					break
+				} else {
+					if StraightOutcome {
+						resultNumber = 4
+						//	fmt.Println("resultNumber is: ", resultNumber)
+					}
+				}
+				resultNumber = value
+			}
+			fmt.Printf("\nHand: %v Deck: %v Best Hand: %v", Hand, Deck, cards.EvaluateResults(resultNumber))
+			//	fmt.Println("resultNumber is: ", resultNumber)
 		}
-
-		// straight search here
-		// three-of-kind search here
-		// two-pairs search here
-		// one-pair search here -- compare Hand with Deck with strings.Contains("deck[i].Rank, __the found in hand__ ")
-		// highest-card search here
-
-	}
+	} // End Game loop
 }
