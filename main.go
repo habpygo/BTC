@@ -55,18 +55,18 @@ func main() {
 		FlushOutcome := searcher.LookForFlushInDeck(flushPotence1, numberfP1, Deck)
 		if FlushOutcome {
 			ResultString = "straight-flush"
-			fmt.Println("After analyzing we say: YEAH ... straight-flush. This is the highest we can get, so no further analysis warrented")
+			//	fmt.Println("After analyzing we say: YEAH ... straight-flush. This is the highest we can get, so no further analysis warrented")
 			ResultArray = append(ResultArray, ResultString) // TODO: make suitable array anc concatenate strings
 
 		} else {
-			firstRank, fRCount, secondRank, sRCount := searcher.FindRanks(Hand)
-			fmt.Println("firstRank is :", firstRank, fRCount, "and secondRank is: ", sRCount, secondRank)
 			// four-of-a-kind search here
+			resultNumber := searcher.FindRanks(Hand, Deck)
+			fmt.Println("resultNumber is: ", resultNumber)
 			// full-house search here
 
 			// then add flush to Result stack
 			ResultString = "flush"
-			fmt.Println("just flush potential, but we have to look for four-of-a-kind and or full-house first")
+			//	fmt.Println("just flush potential, but we have to look for four-of-a-kind and or full-house first")
 			ResultArray = append(ResultArray, ResultString)
 		}
 

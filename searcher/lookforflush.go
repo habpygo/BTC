@@ -118,15 +118,15 @@ func LookForFlushInDeck(suit string, counter int, deck []cards.Card) bool {
 		switch suit {
 		case "S":
 			SpadesArray = append(SpadesArray, deck[i].Rank)
-			fmt.Println("counter S is: ", counter)
+		//	fmt.Println("counter S is: ", counter)
 		case "H":
 			HeartsArray = append(HeartsArray, deck[i].Rank)
 		case "D":
 			DiamondsArray = append(DiamondsArray, deck[i].Rank)
-			fmt.Println("counter D is: ", counter)
+		//	fmt.Println("counter D is: ", counter)
 		case "C":
 			ClubsArray = append(ClubsArray, deck[i].Rank)
-			fmt.Println("counter C is: ", counter)
+		//	fmt.Println("counter C is: ", counter)
 		default:
 		}
 	}
@@ -145,28 +145,28 @@ func LookForFlushInDeck(suit string, counter int, deck []cards.Card) bool {
 
 		if suit == "S" {
 			Straight := StraightFlushOrFlush(SpadesArray)
-			fmt.Println("Array voor Suit S ziet er zo uit: ", SpadesArray)
+			//		fmt.Println("Array voor Suit S ziet er zo uit: ", SpadesArray)
 			if Straight {
 				return true
 			}
 		}
 		if suit == "H" {
 			Straight := StraightFlushOrFlush(HeartsArray)
-			fmt.Println("Array voor Suit H ziet er zo uit: ", HeartsArray)
+			//		fmt.Println("Array voor Suit H ziet er zo uit: ", HeartsArray)
 			if Straight {
 				return true
 			}
 		}
 		if suit == "D" {
 			Straight := StraightFlushOrFlush(DiamondsArray)
-			fmt.Println("Array voor Suit D ziet er zo uit: ", DiamondsArray)
+			//		fmt.Println("Array voor Suit D ziet er zo uit: ", DiamondsArray)
 			if Straight {
 				return true
 			}
 		}
 		if suit == "C" {
 			Straight := StraightFlushOrFlush(ClubsArray)
-			fmt.Println("Array voor Suit C ziet er zo uit: ", ClubsArray)
+			//		fmt.Println("Array voor Suit C ziet er zo uit: ", ClubsArray)
 			if Straight {
 				return true
 			}
