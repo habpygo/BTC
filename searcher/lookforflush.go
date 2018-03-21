@@ -12,6 +12,7 @@ var SpadesArray []string
 var HeartsArray []string
 var DiamondsArray []string
 var ClubsArray []string
+var Flush bool
 
 func LookForSuits(hand []cards.Card) (string, int, string, int) {
 	Spades := 0
@@ -138,30 +139,33 @@ func LookForFlushInDeck(suit string, counter int, deck []cards.Card) bool {
 	case "C":
 		counter += Clubs
 	}
-	if counter == 5 {
-		//fmt.Println("We have a flush; start looking for straight-flush")
-
+	if counter == 5 { // we have 5 equal Suits at least
+		Flush = true // so at least there is a Flush
 		if suit == "S" {
 			StraightFlush := StraightFlushOrFlush(SpadesArray)
 			if StraightFlush {
+				Flush = false
 				return true
 			}
 		}
 		if suit == "H" {
 			StraightFlush := StraightFlushOrFlush(HeartsArray)
 			if StraightFlush {
+				Flush = false
 				return true
 			}
 		}
 		if suit == "D" {
 			StraightFlush := StraightFlushOrFlush(DiamondsArray)
 			if StraightFlush {
+				Flush = false
 				return true
 			}
 		}
 		if suit == "C" {
 			StraightFlush := StraightFlushOrFlush(ClubsArray)
 			if StraightFlush {
+				Flush = false
 				return true
 			}
 		}

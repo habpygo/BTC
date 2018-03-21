@@ -5,23 +5,23 @@ var ResultMap map[int]string
 func EvaluateResults(result int) string {
 
 	switch result {
-	case 0:
-		return "straight-flush"
 	case 1:
-		return "four-of-a-kind"
+		return "straight-flush"
 	case 2:
-		return "full-house"
+		return "four-of-a-kind"
 	case 3:
-		return "flush"
+		return "full-house"
 	case 4:
-		return "straight"
+		return "flush"
 	case 5:
-		return "three-of-a-kind"
+		return "straight"
 	case 6:
-		return "two-pairs"
+		return "three-of-a-kind"
 	case 7:
-		return "one-pair"
+		return "two-pairs"
 	case 8:
+		return "one-pair"
+	case 9:
 		return "highest-card"
 	default:
 		return "to sender"
