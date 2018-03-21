@@ -74,42 +74,55 @@ func FindRanks(hand, deck []cards.Card) int {
 
 	for i := 0; i < NoOfCards-deckExchange; i++ {
 		DeckAce += strings.Count(deck[i].Rank, "A")
+		//fmt.Println("A to pick from Deck is: ", NoOfCards-HandAce, "Rank: ", deck[i].Rank)
 	}
 	for i := 0; i < NoOfCards-deckExchange; i++ {
 		DeckKing += strings.Count(deck[i].Rank, "K")
+		//fmt.Println("K to pick from Deck is: ", NoOfCards-HandKing, "Rank: ", deck[i].Rank)
 	}
 	for i := 0; i < NoOfCards-deckExchange; i++ {
 		DeckQueen += strings.Count(deck[i].Rank, "Q")
+		//fmt.Println("Q to pick from Deck is: ", NoOfCards-HandQueen, "Rank: ", deck[i].Rank)
 	}
 	for i := 0; i < NoOfCards-deckExchange; i++ {
 		DeckJack += strings.Count(deck[i].Rank, "J")
+		//fmt.Println("J to pick from Deck is: ", NoOfCards-HandJack, "Rank: ", deck[i].Rank)
 	}
 	for i := 0; i < NoOfCards-deckExchange; i++ {
 		DeckT += strings.Count(deck[i].Rank, "T")
+		//fmt.Println("T to pick from Deck is: ", NoOfCards-HandT, "Rank: ", deck[i].Rank)
 	}
 	for i := 0; i < NoOfCards-deckExchange; i++ {
 		DeckNine += strings.Count(deck[i].Rank, "9")
+		//fmt.Println("9 to pick from Deck is: ", NoOfCards-HandNine, "Rank: ", deck[i].Rank)
 	}
 	for i := 0; i < NoOfCards-deckExchange; i++ {
 		DeckEight += strings.Count(deck[i].Rank, "8")
+		//fmt.Println("8 to pick from Deck is: ", NoOfCards-HandEight, "Rank: ", deck[i].Rank)
 	}
 	for i := 0; i < NoOfCards-deckExchange; i++ {
 		DeckSeven += strings.Count(deck[i].Rank, "7")
+		//fmt.Println("7 to pick from Deck is: ", NoOfCards-HandSeven, "Rank: ", deck[i].Rank)
 	}
 	for i := 0; i < NoOfCards-deckExchange; i++ {
 		DeckSix += strings.Count(deck[i].Rank, "6")
+		//fmt.Println("6 to pick from Deck is: ", NoOfCards-HandSix, "Rank: ", deck[i].Rank)
 	}
 	for i := 0; i < NoOfCards-deckExchange; i++ {
 		DeckFive += strings.Count(deck[i].Rank, "5")
+		//fmt.Println("5 to pick from Deck is: ", NoOfCards-HandFive, "Rank: ", deck[i].Rank)
 	}
 	for i := 0; i < NoOfCards-deckExchange; i++ {
 		DeckFour += strings.Count(deck[i].Rank, "4")
+		//fmt.Println("4 to pick from Deck is: ", NoOfCards-HandFour, "Rank: ", deck[i].Rank)
 	}
 	for i := 0; i < NoOfCards-deckExchange; i++ {
 		DeckThree += strings.Count(deck[i].Rank, "3")
+		//fmt.Println("3 to pick from Deck is: ", NoOfCards-HandThree, "Rank: ", deck[i].Rank)
 	}
 	for i := 0; i < NoOfCards-deckExchange; i++ {
 		DeckTwo += strings.Count(deck[i].Rank, "2")
+		//fmt.Println("2 to pick from Deck is: ", NoOfCards-HandTwo, "Rank: ", deck[i].Rank)
 	}
 
 	// Total number of a certain Rank
@@ -171,5 +184,12 @@ func FindRanks(hand, deck []cards.Card) int {
 	if firstOutcome == 1 {
 		finalOutcome = 9
 	}
+
+	// rankTotal[0] = 0
+	// rankTotal[1] = 1
 	return finalOutcome
+}
+
+func LookForStraight() {
+
 }

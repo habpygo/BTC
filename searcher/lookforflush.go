@@ -55,7 +55,7 @@ func LookForSuits(hand []cards.Card) (string, int, string, int) {
 
 	m := map[string]int{"S": Spades, "H": Hearts, "D": Diamonds, "C": Clubs}
 
-	// sort the map
+	// sort the map m
 	type kv struct {
 		Key   string
 		Value int
@@ -190,22 +190,22 @@ func StraightFlushOrFlush(rankarray []string) bool {
 		RankedMap[myString] = cards.SetRank(rankarray[i])
 	}
 
-	type kv struct {
+	type pokerhand struct {
 		Key   string
 		Value int
 	}
 
-	var ss []kv
-	for k, v := range RankedMap {
-		ss = append(ss, kv{k, v})
+	var structslice []pokerhand // slice of struct kv
+	for rank, suit := range RankedMap {
+		structslice = append(structslice, pokerhand{rank, suit})
 	}
 
-	sort.Slice(ss, func(i, j int) bool {
-		return ss[i].Value > ss[j].Value
+	sort.Slice(structslice, func(i, j int) bool {
+		return structslice[i].Value > structslice[j].Value
 	})
 
 	var stringSlice []string
-	for _, kv := range ss {
+	for _, kv := range structslice {
 		stringSlice = append(stringSlice, kv.Key)
 	}
 	stringSet := strings.Join(stringSlice, "")
