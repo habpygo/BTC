@@ -142,28 +142,28 @@ func LookForFlushInDeck(suit string, counter int, deck []cards.Card) bool {
 	if counter == 5 { // we have 5 equal Suits at least
 		Flush = true // so at least there is a Flush
 		if suit == "S" {
-			StraightFlush := StraightFlushOrFlush(SpadesArray)
+			StraightFlush := IsStraight(SpadesArray)
 			if StraightFlush {
 				Flush = false
 				return true
 			}
 		}
 		if suit == "H" {
-			StraightFlush := StraightFlushOrFlush(HeartsArray)
+			StraightFlush := IsStraight(HeartsArray)
 			if StraightFlush {
 				Flush = false
 				return true
 			}
 		}
 		if suit == "D" {
-			StraightFlush := StraightFlushOrFlush(DiamondsArray)
+			StraightFlush := IsStraight(DiamondsArray)
 			if StraightFlush {
 				Flush = false
 				return true
 			}
 		}
 		if suit == "C" {
-			StraightFlush := StraightFlushOrFlush(ClubsArray)
+			StraightFlush := IsStraight(ClubsArray)
 			if StraightFlush {
 				Flush = false
 				return true
@@ -180,12 +180,12 @@ func LookForFlushInDeck(suit string, counter int, deck []cards.Card) bool {
 	return false
 }
 
-// StraightFlushOrFlush looks if we are dealing with a straight-flush or normal flush
-func StraightFlushOrFlush(rankarray []string) bool {
+// IsStraight looks if we are dealing with a straight-flush or normal flush
+func IsStraight(rankarray []string) bool {
 	// compare rankarray with cards
 	RankedMap := make(map[string]int)
 	// map to int values to sort according to card game
-	for i := 0; i < 5; i++ {
+	for i := 0; i < NoOfCards; i++ {
 		myString := rankarray[i]
 		RankedMap[myString] = cards.SetRank(rankarray[i])
 	}

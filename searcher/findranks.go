@@ -2,7 +2,6 @@ package searcher
 
 import (
 	"BTC/psychic/cards"
-	"fmt"
 	"sort"
 	"strings"
 )
@@ -65,7 +64,7 @@ func FindRanks(hand, deck []cards.Card) int {
 
 	// highest frequency on top
 	sort.Sort(sort.Reverse(sort.IntSlice(rankHand)))
-	fmt.Println("rankHand is: ", rankHand)
+	//fmt.Println("rankHand is: ", rankHand)
 	var topFive int
 	for i := 0; i < NoOfCards; i++ {
 		topFive += rankHand[i]
@@ -140,9 +139,9 @@ func FindRanks(hand, deck []cards.Card) int {
 	// fifthOutcome := rankTotal[4]
 	// cater for full-house
 
-	fmt.Println("The whole []int rankTotal is: ", rankTotal)
-	fmt.Println("\nfirstOutcome is: ", firstOutcome)
-	fmt.Println("secondOutcome is: ", secondOutcome)
+	//fmt.Println("The whole []int rankTotal is: ", rankTotal)
+	//fmt.Println("\nfirstOutcome is: ", firstOutcome)
+	//fmt.Println("secondOutcome is: ", secondOutcome)
 
 	// four-of-a-kind
 	if firstOutcome == 4 {
