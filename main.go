@@ -40,7 +40,7 @@ func main() {
 	// Print out Games to play
 
 	fmt.Println("\n------------------------SAMPLE INPUT------------------------\n")
-	for h := 0; h < 96; h = h + 10 {
+	for h := 0; h < 90; h = h + 10 {
 		fmt.Printf("%v\n", Game[h:h+10])
 	}
 	fmt.Println("\n--------------------------------------------SAMPLE OUTPUT--------------------------------------------")
