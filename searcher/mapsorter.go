@@ -31,3 +31,23 @@ func MapSorter(pslice []string, length int) string {
 	stringSet := strings.Join(stringSlice, "")
 	return stringSet
 }
+
+// take a straight map
+
+type Pair struct {
+	Key   string
+	Value int
+}
+
+type PairList []Pair
+
+func SortMap(m map[string]int) PairList {
+	pl := make(PairList, len(m))
+	i := 0
+	for k, v := range m {
+		pl[i] = Pair{k, v}
+		i++
+	}
+
+	return pl
+}

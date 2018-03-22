@@ -55,10 +55,10 @@ func main() {
 		Deck = Game[k : k+5] // 5 - 10; 15 - 25; 25 - 35 etc
 		//GameLine = append(Hand, Deck...)
 
-		fmt.Println("\n=========== Game no: ", counter, "============")
+		//	fmt.Println("\n=========== Game no: ", counter, "============")
 		//fmt.Println("GameLine is: ", GameLine)
-		fmt.Println("Hand: ", Hand)
-		fmt.Println("Deck: ", Deck)
+		//	fmt.Println("Hand: ", Hand)
+		//	fmt.Println("Deck: ", Deck)
 		counter++
 
 		// start analysis
@@ -75,7 +75,7 @@ func main() {
 		if StraightFlush {
 			ResultNumber = 1
 			searcher.Flush = false
-			fmt.Printf("\nHand: %v Deck: %v Best Hand: %v", Hand, Deck, cards.EvaluateResults(ResultNumber))
+			//	fmt.Printf("\nHand: %v Deck: %v Best Hand: %v", Hand, Deck, cards.EvaluateResults(ResultNumber))
 			continue // we found the highest value and can skip the rest
 		}
 
