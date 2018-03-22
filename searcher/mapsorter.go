@@ -27,6 +27,7 @@ func MapSorter(pslice []string, length int) string {
 	var stringSlice []string
 	for _, kv := range structslice {
 		stringSlice = append(stringSlice, kv.Key)
+
 	}
 	stringSet := strings.Join(stringSlice, "")
 	return stringSet

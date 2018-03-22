@@ -39,11 +39,11 @@ func main() {
 
 	// Print out Games to play
 
-	fmt.Println("\n------------------------SAMPLE INPUT------------------------\n")
-	for h := 0; h < 90; h = h + 10 {
-		fmt.Printf("%v\n", Game[h:h+10])
-	}
-	fmt.Println("\n--------------------------------------------SAMPLE OUTPUT--------------------------------------------")
+	//	fmt.Println("\n------------------------SAMPLE INPUT------------------------\n")
+	// for h := 0; h < 90; h = h + 10 {
+	// 	fmt.Printf("%v\n", Game[h:h+10])
+	// }
+	//	fmt.Println("\n--------------------------------------------SAMPLE OUTPUT--------------------------------------------")
 
 	// play the game
 	counter := 0
@@ -55,10 +55,10 @@ func main() {
 		Deck = Game[k : k+5] // 5 - 10; 15 - 25; 25 - 35 etc
 		//GameLine = append(Hand, Deck...)
 
-		//	fmt.Println("\n=========== Game no: ", counter, "============")
+		fmt.Println("\n=========== Game no: ", counter, "============")
 		//fmt.Println("GameLine is: ", GameLine)
-		//	fmt.Println("Hand: ", Hand)
-		//	fmt.Println("Deck: ", Deck)
+		fmt.Println("Hand: ", Hand)
+		fmt.Println("Deck: ", Deck)
 		counter++
 
 		// start analysis
@@ -92,7 +92,7 @@ func main() {
 		}
 
 		//fmt.Println("\nFrom resultNumber in loop, value is: ", ResultNumber)
-		fmt.Printf("\nHand: %v Deck: %v Best Hand: %v", Hand, Deck, cards.EvaluateResults(ResultNumber))
+		//	fmt.Printf("\nHand: %v Deck: %v Best Hand: %v", Hand, Deck, cards.EvaluateResults(ResultNumber))
 	}
 	//GameLine = GameLine[:0]
 }
