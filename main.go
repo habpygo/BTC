@@ -39,11 +39,11 @@ func main() {
 
 	// Print out Games to play
 
-	//	fmt.Println("\n------------------------SAMPLE INPUT------------------------\n")
-	// for h := 0; h < 90; h = h + 10 {
-	// 	fmt.Printf("%v\n", Game[h:h+10])
-	// }
-	//	fmt.Println("\n--------------------------------------------SAMPLE OUTPUT--------------------------------------------")
+	fmt.Println("\n------------------------SAMPLE INPUT------------------------\n")
+	for h := 0; h < 90; h = h + 10 {
+		fmt.Printf("%v\n", Game[h:h+10])
+	}
+	fmt.Println("\n--------------------------------------------SAMPLE OUTPUT--------------------------------------------")
 
 	// play the game
 	counter := 0
@@ -52,9 +52,9 @@ func main() {
 		Hand = Game[k-5 : k] // 0 - 5; 10 - 15; 20 - 25 etc
 		Deck = Game[k : k+5] // 5 - 10; 15 - 25; 25 - 35 etc
 
-		fmt.Println("\n=========== Game no: ", counter, "============")
-		fmt.Println("Hand: ", Hand)
-		fmt.Println("Deck: ", Deck)
+		// fmt.Println("\n=========== Game no: ", counter, "============")
+		// fmt.Println("Hand: ", Hand)
+		// fmt.Println("Deck: ", Deck)
 		counter++
 
 		// we look for highest possible rank, i.e. straight-flush and flush first

@@ -2,7 +2,6 @@ package searcher
 
 import (
 	"BTC/psychic/cards"
-	"fmt"
 	"strconv"
 	"strings"
 )
@@ -27,13 +26,13 @@ func IsStraight(rawhand, deck []cards.Card) bool {
 
 	i := 0
 	for k, v := range newPairlist {
-		fmt.Println("k, v: ", k, v) // hier ergens moeten we een slice proberen
+		//fmt.Println("k, v: ", k, v) // hier ergens moeten we een slice proberen
 		hand[k].Rank = v.Key
 		hand[k].Suit = strconv.Itoa(v.Value)
 		i++
 	}
 
-	fmt.Printf("hand is now %v, the sorted version of Hand\n", hand)
+	//fmt.Printf("hand is now %v, the sorted version of Hand\n", hand)
 	//valueslice := make([]string, NoOfCards)
 	valueslice := []string{}
 	straightslice := []string{}
@@ -46,14 +45,14 @@ func IsStraight(rawhand, deck []cards.Card) bool {
 		for j := 0; j < NoOfCards-i-1; j++ {
 			valuedeck = AppendString(valuedeck, deck[j].Rank)
 		}
-		fmt.Println("valudeck is: ", valuedeck)
+		//	fmt.Println("valudeck is: ", valuedeck)
 		//straightslice = Append(valueslice, valuedeck...)
 		straightslice = AppendString(valueslice, valuedeck...)
-		fmt.Println("straightslice is: ", straightslice, "lenght straightslice is: ", len(straightslice))
+		//fmt.Println("straightslice is: ", straightslice, "lenght straightslice is: ", len(straightslice))
 		// analyze straightslize and restard
 		if len(straightslice) == 5 {
 			returnSet := MapSorter(straightslice, len(straightslice))
-			fmt.Println("returnSet is: ", returnSet)
+			//	fmt.Println("returnSet is: ", returnSet)
 			if len(returnSet) == 5 && strings.Contains(cards.StringSet, returnSet) || strings.Contains(cards.StraightSet, returnSet) { // check for A14 or A1
 				straight = true
 				continue
