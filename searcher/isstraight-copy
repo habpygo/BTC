@@ -1,0 +1,69 @@
+package searcher
+
+import (
+	"BTC/psychic/cards"
+	"fmt"
+	"strings"
+)
+
+var straight bool = false
+var straightslice []string
+var rankslice []string
+var bucket []string
+var value1 []string
+var value2 []string
+var value3 []string
+
+func IsStraight(rawhand, deck []cards.Card) bool {
+
+	RankStraight := make(map[string]int)
+	hand := make([]cards.Card, len(rawhand))
+
+	// first we map the Ranks to values according to the specs in
+	// package cards in such a way that we can sort them correctly
+	for i := 0; i < NoOfCards; i++ {
+		RankStraight[rawhand[i].Rank] = cards.SetStraightRank(rawhand[i].Rank)
+		fmt.Println("rawhand[i].Rank is: ", rawhand[i].Rank)
+	}
+
+	// sort the map before we pass it on to hand
+	newPairlist := SortMap(RankStraight)
+
+	i := 0
+	for k, v := range newPairlist {
+		fmt.Println("k, v: ", k, v) // hier ergens moeten we een slice proberen
+		hand[k].Rank = v.Key
+		hand[k].Suit = strconv.Itoa(v.Value)
+		i++
+	}
+
+	fmt.Printf("hand is now %v and its Ranks should be the sorted image of Hand\n", hand)
+	for i := 0; i < NoOfCards-1; i++ {
+
+		value1 = append(value1, hand[i].Rank) // eerste value1 moet bewaard worden
+
+		fmt.Println("value1 is: ", value1)
+		// fill the deck and add the rest from the deck
+		for j := 0; j < NoOfCards-i-1; j++ {
+			value2 = append(value2, deck[j].Rank)
+		}
+		fmt.Println("value2 is: ", value2)
+		straightslice = append(value1, value2...)
+		fmt.Println("straightslice is: ", straightslice)
+		// analyze straightslize and restard
+		if len(straightslice) == 5 {
+			returnSet := MapSorter(straightslice, len(straightslice))
+			if len(returnSet) == 5 && strings.Contains(cards.StringSet, returnSet) || strings.Contains(cards.StraightSet, returnSet) {
+				straight = true
+			}
+		}
+		value1 = value1[:0]
+		value2 = value2[:0]
+	}
+
+	for k := range RankStraight {
+		delete(RankStraight, k)
+	}
+
+	return straight
+}

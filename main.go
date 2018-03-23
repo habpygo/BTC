@@ -49,19 +49,13 @@ func main() {
 	counter := 0
 
 	for k := 5; k+10 < 96; k = k + 10 { // start main loop
-		//GameLine = GameLine[:0]
-		//for k, l := 5, 0; k+10 < 96; k, l = k+10, l+10 {
 		Hand = Game[k-5 : k] // 0 - 5; 10 - 15; 20 - 25 etc
 		Deck = Game[k : k+5] // 5 - 10; 15 - 25; 25 - 35 etc
-		//GameLine = append(Hand, Deck...)
 
 		fmt.Println("\n=========== Game no: ", counter, "============")
-		//fmt.Println("GameLine is: ", GameLine)
 		fmt.Println("Hand: ", Hand)
 		fmt.Println("Deck: ", Deck)
 		counter++
-
-		// start analysis
 
 		// we look for highest possible rank, i.e. straight-flush and flush first
 		flushPotence1, numberfP1, _, _ := searcher.LookForSuits(Hand)
@@ -75,8 +69,14 @@ func main() {
 		if StraightFlush {
 			ResultNumber = 1
 			searcher.Flush = false
-			//	fmt.Printf("\nHand: %v Deck: %v Best Hand: %v", Hand, Deck, cards.EvaluateResults(ResultNumber))
+			// OUTCOME
+			fmt.Printf("\nHand: %v Deck: %v Best Hand: %v", Hand, Deck, cards.EvaluateResults(ResultNumber))
 			continue // we found the highest value and can skip the rest
+		}
+
+		if ResultNumber == 3 && !searcher.Flush { // we found full house, we can skip the rest
+			fmt.Printf("\nHand: %v Deck: %v Best Hand: %v", Hand, Deck, cards.EvaluateResults(ResultNumber))
+			continue
 		}
 
 		if ResultNumber >= 3 {
@@ -85,14 +85,13 @@ func main() {
 				ResultNumber = 4
 			}
 			searcher.Flush = false
-			Straight := searcher.IsSimpleStraight(Hand, Deck)
+			Straight := searcher.IsStraight(Hand, Deck)
 			if Straight {
 				ResultNumber = 5
 			}
 		}
 
-		//fmt.Println("\nFrom resultNumber in loop, value is: ", ResultNumber)
-		//	fmt.Printf("\nHand: %v Deck: %v Best Hand: %v", Hand, Deck, cards.EvaluateResults(ResultNumber))
+		// OUTCOME
+		fmt.Printf("\nHand: %v Deck: %v Best Hand: %v", Hand, Deck, cards.EvaluateResults(ResultNumber))
 	}
-	//GameLine = GameLine[:0]
 }

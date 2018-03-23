@@ -5,6 +5,7 @@ The Psychic Poker Player
 ### Install
 Install the file into `$GOPATH/src` and run `$ go run main.go`
 
+NOTE: `straights` are not identified as of yet!
 The purpose of this code challenge is to demonstrate problem solving and code quality.  
 
 Unless otherwise specified when receiving this excercise, 

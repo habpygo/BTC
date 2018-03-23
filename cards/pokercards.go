@@ -39,7 +39,8 @@ func SetRank(rank string) int {
 	case "2":
 		return 2
 	default:
-		panic("unrecognized Card")
+		return 0
+		//panic("Unrecognized Card, someone is cheating?")
 
 	}
 	return 0
@@ -75,7 +76,8 @@ func SetStraightRank(rank string) int {
 	case "2":
 		return 2
 	default:
-		panic("unrecognized Card")
+		return 0
+		//panic("Unrecognized Card, someone is cheating?")
 
 	}
 	return 0
