@@ -8,6 +8,7 @@ import (
 
 var PokerArray []string
 
+// ReadLine reads all the lines in a game and returns a string slice
 func ReadLine(file string) ([]string, int, error) {
 
 	count := 0

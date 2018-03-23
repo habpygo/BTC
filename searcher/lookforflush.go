@@ -14,6 +14,7 @@ var DiamondsArray []string
 var ClubsArray []string
 var Flush bool
 
+// LookForSuits checks the highest and second highest number of a particular Suit in the game
 func LookForSuits(hand []cards.Card) (string, int, string, int) {
 	Spades := 0
 	Hearts := 0
@@ -94,6 +95,7 @@ func LookForSuits(hand []cards.Card) (string, int, string, int) {
 	return H, LH, A, LA
 }
 
+// LookForFlushInDeck checks for similar Suits in the deck
 func LookForFlushInDeck(suit string, counter int, deck []cards.Card) bool {
 	// index is both a counter and an index
 	index := counter

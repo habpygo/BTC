@@ -6,6 +6,8 @@ import (
 	"strings"
 )
 
+// MapSorter is a util function for IsStraight and returns a sorted string to be compared with the
+// stringSets to check for Straights
 func MapSorter(pslice []string, length int) string {
 	RankingMap := make(map[string]int)
 	for i := 0; i < length; i++ {
@@ -40,6 +42,8 @@ type kv struct {
 	Value int
 }
 
+// SortMap is a util function for IsStraight and sorts the Ranks to prepare
+// for comparison with the stringSet
 func SortMap(m map[string]int) []kv {
 
 	var ss []kv

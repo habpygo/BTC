@@ -10,6 +10,7 @@ var straight bool = false
 var straightslice []string
 var valuedeck []string
 
+// IsStraight looks if a Straight can be formed with the hand and n cards from the deck. It returns a bool.
 func IsStraight(rawhand, deck []cards.Card) bool {
 
 	RankStraight := make(map[string]int)
@@ -26,7 +27,6 @@ func IsStraight(rawhand, deck []cards.Card) bool {
 
 	i := 0
 	for k, v := range newPairlist {
-		//fmt.Println("k, v: ", k, v) // hier ergens moeten we een slice proberen
 		hand[k].Rank = v.Key
 		hand[k].Suit = strconv.Itoa(v.Value)
 		i++
@@ -65,7 +65,7 @@ func IsStraight(rawhand, deck []cards.Card) bool {
 }
 
 // AppendString appends data to the end of a slice.
-// This function appends byte elements to a slice of bytes,
+// This function appends string elements to a slice of bytes,
 // growing the slice if necessary, and returns the updated slice value
 func AppendString(slice []string, data ...string) []string {
 	m := len(slice)
@@ -80,6 +80,7 @@ func AppendString(slice []string, data ...string) []string {
 	return slice
 }
 
+// CheckForDoubles checks whether there are double values adjacent in a slice
 func CheckForDoubles(v1, v2 string) bool {
 	if v1 == v2 {
 		return true
