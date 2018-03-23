@@ -10,23 +10,16 @@ import (
 func main() {
 
 	var ResultNumber int
-	//GameArray, noOfLinesInFile, err := utils.ReadFile("sampleinput")
 	// file contains game in memory
 	card := cards.Card{}
 	Game := []cards.Card{}
 	var Hand = Game[:]
 	var Deck = Game[:]
-	//var GameLine = Game[:]
 
-	//
 	file, noOfLinesInFile, err := utils.ReadLine("sampleinput")
-	//file, noOfLinesInFile, err := utils.ReadLine("sampleinput-test")
 	if err != nil {
 		fmt.Println("couldn't read file")
 	}
-	//fmt.Println("noOfLinesFile is: ", noOfLinesInFile)
-
-	// Read all the lines in: noOfLinesFile == 9, en(file[i]) == 29
 	for i := 0; i < noOfLinesInFile; i++ {
 		for j := 0; j < len(file[i]); j = j + 3 { // iterate +3 elements further
 			if j < len(file[i])-1 {
@@ -52,18 +45,12 @@ func main() {
 		Hand = Game[k-5 : k] // 0 - 5; 10 - 15; 20 - 25 etc
 		Deck = Game[k : k+5] // 5 - 10; 15 - 25; 25 - 35 etc
 
-		// fmt.Println("\n=========== Game no: ", counter, "============")
-		// fmt.Println("Hand: ", Hand)
-		// fmt.Println("Deck: ", Deck)
 		counter++
 
 		// we look for highest possible rank, i.e. straight-flush and flush first
 		flushPotence1, numberfP1, _, _ := searcher.LookForSuits(Hand)
-		//fmt.Println("\nflushPotence1 is: ", flushPotence1, "and number of the same Suit are: ", numberfP1)
-		//fmt.Println("\nflushPotence2 is: ", flushPotence2, "and number of the same Suit are: ", numberfP2)
 
 		ResultNumber = searcher.FindRanks(Hand, Deck)
-		//fmt.Println("ResultNumber in Main() is: ", ResultNumber)
 
 		StraightFlush := searcher.LookForFlushInDeck(flushPotence1, numberfP1, Deck)
 		if StraightFlush {
@@ -81,7 +68,6 @@ func main() {
 
 		if ResultNumber >= 3 {
 			if searcher.Flush {
-				//fmt.Println(searcher.Flush)
 				ResultNumber = 4
 			}
 			searcher.Flush = false

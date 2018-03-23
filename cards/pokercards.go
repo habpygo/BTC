@@ -10,7 +10,6 @@ var StringSet = "AKQJT98765432"
 var StraightSet = "KQJT98765432A"
 
 func SetRank(rank string) int {
-	//RankMap := make(map[string]int)
 	switch rank {
 	case "A":
 		return 14
@@ -40,14 +39,12 @@ func SetRank(rank string) int {
 		return 2
 	default:
 		return 0
-		//panic("Unrecognized Card, someone is cheating?")
 
 	}
 	return 0
 }
 
 func SetStraightRank(rank string) int {
-	//RankMap := make(map[string]int)
 	switch rank {
 	case "A":
 		return 1
@@ -77,8 +74,6 @@ func SetStraightRank(rank string) int {
 		return 2
 	default:
 		return 0
-		//panic("Unrecognized Card, someone is cheating?")
-
 	}
 	return 0
 }

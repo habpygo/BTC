@@ -32,8 +32,6 @@ func IsStraight(rawhand, deck []cards.Card) bool {
 		i++
 	}
 
-	//fmt.Printf("hand is now %v, the sorted version of Hand\n", hand)
-	//valueslice := make([]string, NoOfCards)
 	valueslice := []string{}
 	straightslice := []string{}
 	valuedeck := []string{}
@@ -45,10 +43,7 @@ func IsStraight(rawhand, deck []cards.Card) bool {
 		for j := 0; j < NoOfCards-i-1; j++ {
 			valuedeck = AppendString(valuedeck, deck[j].Rank)
 		}
-		//	fmt.Println("valudeck is: ", valuedeck)
-		//straightslice = Append(valueslice, valuedeck...)
 		straightslice = AppendString(valueslice, valuedeck...)
-		//fmt.Println("straightslice is: ", straightslice, "lenght straightslice is: ", len(straightslice))
 		// analyze straightslize and restard
 		if len(straightslice) == 5 {
 			returnSet := MapSorter(straightslice, len(straightslice))

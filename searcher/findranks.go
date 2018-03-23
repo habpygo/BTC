@@ -44,7 +44,6 @@ func FindRanks(hand, deck []cards.Card) int {
 
 	// iterate over the hand and identify the ranks and their quantity
 	for i := 0; i < len(hand); i++ {
-		//fmt.Println("hand[i].Rank for this round is: ", hand[i].Rank, "suit is: ", hand[i].Suit)
 		HandAce += strings.Count(hand[i].Rank, "A")
 		HandKing += strings.Count(hand[i].Rank, "K")
 		HandQueen += strings.Count(hand[i].Rank, "Q")
@@ -64,7 +63,6 @@ func FindRanks(hand, deck []cards.Card) int {
 
 	// highest frequency on top
 	sort.Sort(sort.Reverse(sort.IntSlice(rankHand)))
-	//fmt.Println("rankHand is: ", rankHand)
 	var topFive int
 	for i := 0; i < NoOfCards; i++ {
 		topFive += rankHand[i]
@@ -134,14 +132,6 @@ func FindRanks(hand, deck []cards.Card) int {
 	finalOutcome := -1
 	firstOutcome := rankTotal[0]
 	secondOutcome := rankTotal[1]
-	// thirdOutome := rankTotal[2]
-	// fourthOutome := rankTotal[3]
-	// fifthOutcome := rankTotal[4]
-	// cater for full-house
-
-	//fmt.Println("The whole []int rankTotal is: ", rankTotal)
-	//fmt.Println("\nfirstOutcome is: ", firstOutcome)
-	//fmt.Println("secondOutcome is: ", secondOutcome)
 
 	// four-of-a-kind
 	if firstOutcome == 4 {
