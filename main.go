@@ -5,6 +5,7 @@ import (
 	"BTC/psychic/searcher"
 	"BTC/psychic/utils"
 	"fmt"
+	"strings"
 )
 
 func main() {
@@ -36,7 +37,7 @@ func main() {
 	for h := 0; h < 90; h = h + 10 {
 		fmt.Printf("%v\n", Game[h:h+10])
 	}
-	fmt.Println("\n--------------------------------------------SAMPLE OUTPUT--------------------------------------------")
+	fmt.Println("\n------------------------SAMPLE OUTPUT-----------------------------")
 
 	// play the game
 	counter := 0
@@ -57,12 +58,14 @@ func main() {
 			ResultNumber = 1
 			searcher.Flush = false
 			// OUTCOME
-			fmt.Printf("\nHand: %v Deck: %v Best Hand: %v", Hand, Deck, cards.EvaluateResults(ResultNumber))
+			fmt.Println("Hand: ", strings.Trim(fmt.Sprint(Hand[0]), "{}"), strings.Trim(fmt.Sprint(Hand[1]), "{}"), strings.Trim(fmt.Sprint(Hand[2]), "{}"), strings.Trim(fmt.Sprint(Hand[3]), "{}"), strings.Trim(fmt.Sprint(Hand[4]), "{}"), "Deck: ", strings.Trim(fmt.Sprint(Deck[0]), "{}"), strings.Trim(fmt.Sprint(Deck[1]), "{}"), strings.Trim(fmt.Sprint(Deck[2]), "{}"), strings.Trim(fmt.Sprint(Deck[3]), "{}"), strings.Trim(fmt.Sprint(Deck[4]), "{}"), cards.EvaluateResults(ResultNumber))
+			//fmt.Printf("\nHand: %v Deck: %v Best Hand: %v", Hand, Deck, cards.EvaluateResults(ResultNumber))
 			continue // we found the highest value and can skip the rest
 		}
 
 		if ResultNumber == 3 && !searcher.Flush { // we found full house, we can skip the rest
-			fmt.Printf("\nHand: %v Deck: %v Best Hand: %v", Hand, Deck, cards.EvaluateResults(ResultNumber))
+			fmt.Println("Hand: ", strings.Trim(fmt.Sprint(Hand[0]), "{}"), strings.Trim(fmt.Sprint(Hand[1]), "{}"), strings.Trim(fmt.Sprint(Hand[2]), "{}"), strings.Trim(fmt.Sprint(Hand[3]), "{}"), strings.Trim(fmt.Sprint(Hand[4]), "{}"), "Deck: ", strings.Trim(fmt.Sprint(Deck[0]), "{}"), strings.Trim(fmt.Sprint(Deck[1]), "{}"), strings.Trim(fmt.Sprint(Deck[2]), "{}"), strings.Trim(fmt.Sprint(Deck[3]), "{}"), strings.Trim(fmt.Sprint(Deck[4]), "{}"), cards.EvaluateResults(ResultNumber))
+			//fmt.Printf("\nHand: %v Deck: %v Best Hand: %v", Hand, Deck, cards.EvaluateResults(ResultNumber))
 			continue
 		}
 
@@ -78,6 +81,8 @@ func main() {
 		}
 
 		// OUTCOME
-		fmt.Printf("\nHand: %v Deck: %v Best Hand: %v", Hand, Deck, cards.EvaluateResults(ResultNumber))
+		//fmt.Printf("\nHand: %v %v Deck: %s Best Hand: %s", strings.Trim(fmt.Sprint(Hand[0]), "{}")),  Hand[1], Deck, cards.EvaluateResults(ResultNumber))
+		fmt.Println("Hand: ", strings.Trim(fmt.Sprint(Hand[0]), "{}"), strings.Trim(fmt.Sprint(Hand[1]), "{}"), strings.Trim(fmt.Sprint(Hand[2]), "{}"), strings.Trim(fmt.Sprint(Hand[3]), "{}"), strings.Trim(fmt.Sprint(Hand[4]), "{}"), "Deck: ", strings.Trim(fmt.Sprint(Deck[0]), "{}"), strings.Trim(fmt.Sprint(Deck[1]), "{}"), strings.Trim(fmt.Sprint(Deck[2]), "{}"), strings.Trim(fmt.Sprint(Deck[3]), "{}"), strings.Trim(fmt.Sprint(Deck[4]), "{}"), cards.EvaluateResults(ResultNumber))
+
 	}
 }
