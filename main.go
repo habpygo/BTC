@@ -35,7 +35,8 @@ func main() {
 
 	fmt.Println("\n------------------------SAMPLE INPUT------------------------\n")
 	for h := 0; h < 90; h = h + 10 {
-		fmt.Printf("%v\n", Game[h:h+10])
+		//fmt.Printf("%v\n", Game[h:h+10])
+		fmt.Printf("%v%v %v%v %v%v %v%v %v%v %v%v %v%v %v%v %v%v %v%v\n", Game[h].Rank, Game[h].Suit, Game[h+1].Rank, Game[h+1].Suit, Game[h+2].Rank, Game[h+2].Suit, Game[h+3].Rank, Game[h+3].Suit, Game[h+4].Rank, Game[h+4].Suit, Game[h+5].Rank, Game[h+5].Suit, Game[h+6].Rank, Game[h+6].Suit, Game[h+7].Rank, Game[h+7].Suit, Game[h+8].Rank, Game[h+8].Suit, Game[h+9].Rank, Game[h+9].Suit)
 	}
 	fmt.Println("\n------------------------SAMPLE OUTPUT-----------------------------")
 
