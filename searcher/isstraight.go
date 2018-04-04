@@ -25,11 +25,9 @@ func IsStraight(rawhand, deck []cards.Card) bool {
 	// sort the map before we pass it on to hand
 	newPairlist := SortMap(RankStraight)
 
-	i := 0
 	for k, v := range newPairlist {
 		hand[k].Rank = v.Key
 		hand[k].Suit = strconv.Itoa(v.Value)
-		i++
 	}
 
 	valueslice := []string{}
@@ -47,8 +45,7 @@ func IsStraight(rawhand, deck []cards.Card) bool {
 		// analyze straightslize and restard
 		if len(straightslice) == 5 {
 			returnSet := MapSorter(straightslice, len(straightslice))
-			//	fmt.Println("returnSet is: ", returnSet)
-			if len(returnSet) == 5 && strings.Contains(cards.StringSet, returnSet) || strings.Contains(cards.StraightSet, returnSet) { // check for A14 or A1
+			if strings.Contains(cards.StringSet, returnSet) || strings.Contains(cards.StraightSet, returnSet) { // check for A==14 or A==1
 				straight = true
 				continue
 			}
@@ -57,6 +54,7 @@ func IsStraight(rawhand, deck []cards.Card) bool {
 		valuedeck = valuedeck[:0]
 	}
 
+	// delete map
 	for k := range RankStraight {
 		delete(RankStraight, k)
 	}
