@@ -63,10 +63,6 @@ func FindRanks(hand, deck []cards.Card) int {
 
 	// highest frequency on top
 	sort.Sort(sort.Reverse(sort.IntSlice(rankHand)))
-	var topFive int
-	for i := 0; i < NoOfCards; i++ {
-		topFive += rankHand[i]
-	}
 	deckExchange = rankHand[0]
 
 	for i := 0; i < NoOfCards-deckExchange; i++ {

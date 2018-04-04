@@ -79,11 +79,3 @@ func AppendString(slice []string, data ...string) []string {
 	copy(slice[m:n], data)
 	return slice
 }
-
-// CheckForDoubles checks whether there are double values adjacent in a slice
-func CheckForDoubles(v1, v2 string) bool {
-	if v1 == v2 {
-		return true
-	}
-	return false
-}

@@ -41,13 +41,10 @@ func main() {
 	fmt.Println("\n------------------------SAMPLE OUTPUT-----------------------------")
 
 	// play the game
-	counter := 0
 
-	for k := 5; k+10 < 96; k = k + 10 { // start main loop
+	for k := 5; k+10 < noOfLinesInFile*10; k = k + 10 { // start main loop
 		Hand = Game[k-5 : k] // 0 - 5; 10 - 15; 20 - 25 etc
 		Deck = Game[k : k+5] // 5 - 10; 15 - 25; 25 - 35 etc
-
-		counter++
 
 		// we look for highest possible rank, i.e. straight-flush and flush first
 		flushPotence1, numberfP1, _, _ := searcher.LookForSuits(Hand)
@@ -84,6 +81,5 @@ func main() {
 		// OUTCOME
 		//fmt.Printf("\nHand: %v %v Deck: %s Best Hand: %s", strings.Trim(fmt.Sprint(Hand[0]), "{}")),  Hand[1], Deck, cards.EvaluateResults(ResultNumber))
 		fmt.Println("Hand: ", strings.Trim(fmt.Sprint(Hand[0]), "{}"), strings.Trim(fmt.Sprint(Hand[1]), "{}"), strings.Trim(fmt.Sprint(Hand[2]), "{}"), strings.Trim(fmt.Sprint(Hand[3]), "{}"), strings.Trim(fmt.Sprint(Hand[4]), "{}"), "Deck: ", strings.Trim(fmt.Sprint(Deck[0]), "{}"), strings.Trim(fmt.Sprint(Deck[1]), "{}"), strings.Trim(fmt.Sprint(Deck[2]), "{}"), strings.Trim(fmt.Sprint(Deck[3]), "{}"), strings.Trim(fmt.Sprint(Deck[4]), "{}"), cards.EvaluateResults(ResultNumber))
-
 	}
 }
