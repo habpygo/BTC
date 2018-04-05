@@ -56,14 +56,12 @@ func main() {
 			ResultNumber = 1
 			searcher.Flush = false
 			// OUTCOME
-			fmt.Println("Hand: ", strings.Trim(fmt.Sprint(Hand[0]), "{}"), strings.Trim(fmt.Sprint(Hand[1]), "{}"), strings.Trim(fmt.Sprint(Hand[2]), "{}"), strings.Trim(fmt.Sprint(Hand[3]), "{}"), strings.Trim(fmt.Sprint(Hand[4]), "{}"), "Deck: ", strings.Trim(fmt.Sprint(Deck[0]), "{}"), strings.Trim(fmt.Sprint(Deck[1]), "{}"), strings.Trim(fmt.Sprint(Deck[2]), "{}"), strings.Trim(fmt.Sprint(Deck[3]), "{}"), strings.Trim(fmt.Sprint(Deck[4]), "{}"), cards.EvaluateResults(ResultNumber))
-			//fmt.Printf("\nHand: %v Deck: %v Best Hand: %v", Hand, Deck, cards.EvaluateResults(ResultNumber))
+			fmt.Println("Hand: ", strings.Trim(fmt.Sprint(Hand[0].Rank, Hand[0].Suit), " "), strings.Trim(fmt.Sprint(Hand[1].Rank, Hand[1].Suit), " "), strings.Trim(fmt.Sprint(Hand[2].Rank, Hand[2].Suit), " "), strings.Trim(fmt.Sprint(Hand[3].Rank, Hand[3].Suit), " "), strings.Trim(fmt.Sprint(Hand[4].Rank, Hand[4].Suit), " "), "Deck: ", strings.Trim(fmt.Sprint(Deck[0].Rank, Deck[0].Suit), " "), strings.Trim(fmt.Sprint(Deck[1].Rank, Deck[1].Suit), " "), strings.Trim(fmt.Sprint(Deck[2].Rank, Deck[2].Suit), " "), strings.Trim(fmt.Sprint(Deck[3].Rank, Deck[3].Suit), " "), strings.Trim(fmt.Sprint(Deck[4].Rank, Deck[4].Suit), " "), cards.EvaluateResults(ResultNumber))
 			continue // we found the highest value and can skip the rest
 		}
 
 		if ResultNumber == 3 && !searcher.Flush { // we found full house, we can skip the rest
-			fmt.Println("Hand: ", strings.Trim(fmt.Sprint(Hand[0]), "{}"), strings.Trim(fmt.Sprint(Hand[1]), "{}"), strings.Trim(fmt.Sprint(Hand[2]), "{}"), strings.Trim(fmt.Sprint(Hand[3]), "{}"), strings.Trim(fmt.Sprint(Hand[4]), "{}"), "Deck: ", strings.Trim(fmt.Sprint(Deck[0]), "{}"), strings.Trim(fmt.Sprint(Deck[1]), "{}"), strings.Trim(fmt.Sprint(Deck[2]), "{}"), strings.Trim(fmt.Sprint(Deck[3]), "{}"), strings.Trim(fmt.Sprint(Deck[4]), "{}"), cards.EvaluateResults(ResultNumber))
-			//fmt.Printf("\nHand: %v Deck: %v Best Hand: %v", Hand, Deck, cards.EvaluateResults(ResultNumber))
+			fmt.Println("Hand: ", strings.Trim(fmt.Sprint(Hand[0].Rank, Hand[0].Suit), " "), strings.Trim(fmt.Sprint(Hand[1].Rank, Hand[1].Suit), " "), strings.Trim(fmt.Sprint(Hand[2].Rank, Hand[2].Suit), " "), strings.Trim(fmt.Sprint(Hand[3].Rank, Hand[3].Suit), " "), strings.Trim(fmt.Sprint(Hand[4].Rank, Hand[4].Suit), " "), "Deck: ", strings.Trim(fmt.Sprint(Deck[0].Rank, Deck[0].Suit), " "), strings.Trim(fmt.Sprint(Deck[1].Rank, Deck[1].Suit), " "), strings.Trim(fmt.Sprint(Deck[2].Rank, Deck[2].Suit), " "), strings.Trim(fmt.Sprint(Deck[3].Rank, Deck[3].Suit), " "), strings.Trim(fmt.Sprint(Deck[4].Rank, Deck[4].Suit), " "), cards.EvaluateResults(ResultNumber))
 			continue
 		}
 
@@ -79,7 +77,7 @@ func main() {
 		}
 
 		// OUTCOME
-		//fmt.Printf("\nHand: %v %v Deck: %s Best Hand: %s", strings.Trim(fmt.Sprint(Hand[0]), "{}")),  Hand[1], Deck, cards.EvaluateResults(ResultNumber))
-		fmt.Println("Hand: ", strings.Trim(fmt.Sprint(Hand[0]), "{}"), strings.Trim(fmt.Sprint(Hand[1]), "{}"), strings.Trim(fmt.Sprint(Hand[2]), "{}"), strings.Trim(fmt.Sprint(Hand[3]), "{}"), strings.Trim(fmt.Sprint(Hand[4]), "{}"), "Deck: ", strings.Trim(fmt.Sprint(Deck[0]), "{}"), strings.Trim(fmt.Sprint(Deck[1]), "{}"), strings.Trim(fmt.Sprint(Deck[2]), "{}"), strings.Trim(fmt.Sprint(Deck[3]), "{}"), strings.Trim(fmt.Sprint(Deck[4]), "{}"), cards.EvaluateResults(ResultNumber))
+		fmt.Println("Hand: ", strings.Trim(fmt.Sprint(Hand[0].Rank, Hand[0].Suit), " "), strings.Trim(fmt.Sprint(Hand[1].Rank, Hand[1].Suit), " "), strings.Trim(fmt.Sprint(Hand[2].Rank, Hand[2].Suit), " "), strings.Trim(fmt.Sprint(Hand[3].Rank, Hand[3].Suit), " "), strings.Trim(fmt.Sprint(Hand[4].Rank, Hand[4].Suit), " "), "Deck: ", strings.Trim(fmt.Sprint(Deck[0].Rank, Deck[0].Suit), " "), strings.Trim(fmt.Sprint(Deck[1].Rank, Deck[1].Suit), " "), strings.Trim(fmt.Sprint(Deck[2].Rank, Deck[2].Suit), " "), strings.Trim(fmt.Sprint(Deck[3].Rank, Deck[3].Suit), " "), strings.Trim(fmt.Sprint(Deck[4].Rank, Deck[4].Suit), " "), cards.EvaluateResults(ResultNumber))
 	}
+
 }
