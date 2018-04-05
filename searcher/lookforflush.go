@@ -51,8 +51,8 @@ func LookForSuits(hand []cards.Card) (string, int, string, int) {
 
 	}
 
-	sl := []int{Spades, Hearts, Diamonds, Clubs}
-	sort.Ints(sl)
+	//sl := []int{Spades, Hearts, Diamonds, Clubs}
+	//sort.Ints(sl)
 
 	m := map[string]int{"S": Spades, "H": Hearts, "D": Diamonds, "C": Clubs}
 

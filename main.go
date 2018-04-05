@@ -34,15 +34,14 @@ func main() {
 	// Print out Games to play
 
 	fmt.Println("\n------------------------SAMPLE INPUT------------------------\n")
-	for h := 0; h < 90; h = h + 10 {
-		//fmt.Printf("%v\n", Game[h:h+10])
+	for h := 0; h < noOfLinesInFile*10; h = h + 10 {
 		fmt.Printf("%v%v %v%v %v%v %v%v %v%v %v%v %v%v %v%v %v%v %v%v\n", Game[h].Rank, Game[h].Suit, Game[h+1].Rank, Game[h+1].Suit, Game[h+2].Rank, Game[h+2].Suit, Game[h+3].Rank, Game[h+3].Suit, Game[h+4].Rank, Game[h+4].Suit, Game[h+5].Rank, Game[h+5].Suit, Game[h+6].Rank, Game[h+6].Suit, Game[h+7].Rank, Game[h+7].Suit, Game[h+8].Rank, Game[h+8].Suit, Game[h+9].Rank, Game[h+9].Suit)
 	}
 	fmt.Println("\n------------------------SAMPLE OUTPUT-----------------------------")
 
 	// play the game
 
-	for k := 5; k+10 < noOfLinesInFile*10; k = k + 10 { // start main loop
+	for k := 5; k+10 <= noOfLinesInFile*11; k = k + 10 { // start main loop
 		Hand = Game[k-5 : k] // 0 - 5; 10 - 15; 20 - 25 etc
 		Deck = Game[k : k+5] // 5 - 10; 15 - 25; 25 - 35 etc
 
